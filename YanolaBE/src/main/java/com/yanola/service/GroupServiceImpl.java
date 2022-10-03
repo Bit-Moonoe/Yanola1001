@@ -3,8 +3,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.yanola.entity.Group;
+import com.yanola.entity.Group.Response;
 import com.yanola.repository.GroupRepository;
 import com.yanola.service.GroupService;
 
@@ -12,6 +14,9 @@ public class GroupServiceImpl implements GroupService {
 	
 	@Autowired
 	private GroupRepository groupRepository;
+	
+	@Autowired
+	private GroupService groupService;
 	
 	@Override
 	public List<Group> findAllGroups() {
@@ -36,5 +41,9 @@ public class GroupServiceImpl implements GroupService {
 		System.out.println("그룹등록");
 		return enterGroup;
 	}
+
+	
+
+	
 	
 }

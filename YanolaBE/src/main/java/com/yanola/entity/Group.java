@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import org.springframework.stereotype.Component;
 
@@ -52,6 +53,9 @@ public class Group {
 	@Column(nullable = false)
 	private int groupScore;
 	
+	@Column
+	private GameItem gameItem;
+	
 	
 	@Override
 	public String toString() {
@@ -66,7 +70,7 @@ public class Group {
 	@Getter @Setter
 	public static class Request{
 		
-	
+		@NotBlank(message = "그룹 ID는 공백처리 불가")
 		private String groupId;
 		
 		private int groupRank;
@@ -92,11 +96,14 @@ public class Group {
 		
 		private int groupScore;
 		
+		private GameItem gameItem;
+		
 		public static Group.Response toResponse(final Group group){
 			
 			return Response.builder().groupId(group.getGroupId())
 					.groupRank(group.getGroupRank())
 					.groupScore(group.getGroupScore())
+					.gameItem(group.getGameItem())
 					.build();
 		}
 		
